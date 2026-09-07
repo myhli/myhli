@@ -1,0 +1,118 @@
+.sliderWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  touch-action: pan-y pinch-zoom;
+}
+
+.slideContainer {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+  touch-action: pan-y pinch-zoom;
+}
+
+.singlePane {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  touch-action: pan-y pinch-zoom;
+}
+
+// Incoming pane: in-flow layout, sets container height naturally
+.incomingPane {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  isolation: isolate;
+  contain: paint;
+  touch-action: pan-y pinch-zoom;
+}
+
+// Outgoing pane: absolutely positioned overlay on top of container
+.outgoingPane {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  pointer-events: none;
+  z-index: 1;
+  isolation: isolate;
+  contain: paint;
+  touch-action: pan-y pinch-zoom;
+}
+
+// Fast launch, smooth deceleration easing ("Awal cepat, terus lambat akhir")
+$slide-timing: 0.5s cubic-bezier(0.08, 0.88, 0.18, 1) both;
+
+// Next Slide Animations: Outgoing glides left, Incoming enters from right
+.outgoingNext {
+  animation: slideOutLeft #{$slide-timing};
+}
+
+.incomingNext {
+  animation: slideInRight #{$slide-timing};
+}
+
+// Prev Slide Animations: Outgoing glides right, Incoming enters from left
+.outgoingPrev {
+  animation: slideOutRight #{$slide-timing};
+}
+
+.incomingPrev {
+  animation: slideInLeft #{$slide-timing};
+}
+
+@keyframes slideOutLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translate3d(100%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideOutRight {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}

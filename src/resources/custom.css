@@ -1,0 +1,34 @@
+/* Apple Typography (San Francisco / SF Pro) & Inter Stack */
+:root,
+html,
+html[class] {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+
+  /* Apple SF Pro Display for Headings */
+  --font-heading: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "Inter", system-ui, sans-serif !important;
+
+  /* Apple SF Pro Text for Body & Labels */
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "Inter", system-ui, sans-serif !important;
+  --font-label: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "Inter", system-ui, sans-serif !important;
+
+  /* Apple SF Mono for Code / Metadata */
+  --font-code: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Geist Mono", monospace !important;
+}
+/* Smooth theme change transition during flash */
+html.theme-transitioning,
+html.theme-transitioning body,
+html.theme-transitioning main,
+html.theme-transitioning header,
+html.theme-transitioning [data-border="rounded"] {
+  transition: background-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              fill 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Neutralize links */
+a:not(.button):not([class*="button"]) {
+  color: inherit;
+}

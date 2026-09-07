@@ -1,0 +1,31 @@
+import { getPosts } from "@/utils/utils";
+import { Column } from "@once-ui-system/core";
+import { ProjectsFilter } from "./ProjectsFilter";
+
+interface ProjectsProps {
+  range?: [number, number?];
+  exclude?: string[];
+}
+
+export function Projects({ range, exclude }: ProjectsProps) {
+  let allProjects = getPosts(["src", "app", "work", "projects"]);
+
+  // Exclude by slug (exact match)
+  if (exclude && exclude.length > 0) {
+    allProjects = allProjects.filter((post) => !exclude.includes(post.slug));
+  }
+
+  const sortedProjects = allProjects.sort((a, b) => {
+    return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
+  });
+
+  const displayedProjects = range
+    ? sortedProjects.slice(range[0] - 1, range[1] ?? sortedProjects.length)
+    : sortedProjects;
+
+  return (
+    <Column fillWidth marginBottom="40" paddingX="l" s={{ paddingX: "0" }}>
+      <ProjectsFilter projects={displayedProjects} />
+    </Column>
+  );
+}

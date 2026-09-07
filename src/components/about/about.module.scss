@@ -1,0 +1,478 @@
+@use "../breakpoints.scss" as breakpoints;
+
+.hover {
+  transition: var(--transition-micro-medium);
+
+  &:hover {
+    transform: translateX(var(--static-space-4));
+  }
+}
+
+// Section anchor scroll positioning (prevents floating navbar overlap)
+.sectionContainer {
+  scroll-margin-top: 110px;
+  width: 100%;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--neutral-alpha-weak, rgba(0, 0, 0, 0.06));
+}
+
+:global([data-theme="dark"]) .sectionHeader {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+// Full-Width Experience & Education Cards (Anti-Cramping)
+.experienceCard {
+  width: 100%;
+  border-radius: 14px;
+  padding: 22px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  // Light theme
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--neutral-alpha-medium, rgba(0, 0, 0, 0.08));
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: var(--neutral-alpha-strong, rgba(0, 0, 0, 0.16));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+}
+
+:global([data-theme="dark"]) .experienceCard {
+  background: rgba(18, 20, 26, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+
+  &:hover {
+    background: rgba(24, 28, 38, 0.85);
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  }
+}
+
+// Soft tinted background for active / primary role (replaces thick side-tab slop)
+.featuredCard {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--neutral-alpha-strong, rgba(0, 0, 0, 0.14));
+  box-shadow: 
+    0 2px 12px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.98);
+    border-color: var(--neutral-on-background-strong, #0c0e14);
+    box-shadow: 
+      0 12px 32px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+}
+
+:global([data-theme="dark"]) .featuredCard {
+  background: rgba(20, 26, 36, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  &:hover {
+    background: rgba(24, 32, 45, 0.95);
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 
+      0 14px 40px rgba(0, 0, 0, 0.5),
+      0 0 20px rgba(255, 255, 255, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+// Card Header: Title + Role + Date
+.experienceHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+}
+
+.experienceTitleGroup {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.companyLink {
+  text-decoration: none;
+  color: var(--neutral-on-background-strong) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+  * {
+    color: inherit !important;
+  }
+
+  &:hover {
+    color: var(--neutral-on-background-weak) !important;
+    transform: translateX(2px);
+
+    .linkIcon {
+      opacity: 1;
+      transform: translate(2px, -2px);
+    }
+  }
+}
+
+:global([data-theme="dark"]) .companyLink {
+  color: #ffffff !important;
+
+  * {
+    color: inherit !important;
+  }
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.75) !important;
+  }
+}
+
+.linkIcon {
+  opacity: 0.5;
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  color: var(--neutral-on-background-weak) !important;
+}
+
+.roleBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: var(--neutral-alpha-weak, rgba(0, 0, 0, 0.04));
+  border: 1px solid var(--neutral-alpha-medium, rgba(0, 0, 0, 0.08));
+  color: var(--neutral-on-background-strong);
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+:global([data-theme="dark"]) .roleBadge {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.timeframeBadge {
+  font-family: var(--font-code), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  color: var(--neutral-on-background-weak);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: var(--neutral-alpha-weak, rgba(0, 0, 0, 0.04));
+  border: 1px solid var(--neutral-alpha-weak, rgba(0, 0, 0, 0.06));
+}
+
+:global([data-theme="dark"]) .timeframeBadge {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.achievementsList {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  li {
+    line-height: 1.6;
+    color: var(--neutral-on-background-weak);
+  }
+}
+
+// Technical Skills Responsive Grid (3 balanced columns)
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.skillCard {
+  border-radius: 14px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  // Light theme
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--neutral-alpha-medium, rgba(0, 0, 0, 0.08));
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: var(--neutral-alpha-strong, rgba(0, 0, 0, 0.16));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+}
+
+:global([data-theme="dark"]) .skillCard {
+  background: rgba(18, 20, 26, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+
+  &:hover {
+    background: rgba(24, 28, 38, 0.85);
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  }
+}
+
+// Avatar wrapper with micro-tilt and subtle glow
+.avatarWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.05));
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.04) translateY(-3px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.22);
+  }
+}
+
+:global([data-theme="dark"]) .avatarWrap {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.03));
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+
+  &:hover {
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.65), 0 0 24px rgba(255, 255, 255, 0.08);
+  }
+}
+
+// Availability status pill with living beacon pulse
+@keyframes beaconPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.75);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.availabilityPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background: var(--neutral-alpha-weak, rgba(0, 0, 0, 0.04));
+  border: 1px solid var(--neutral-alpha-medium, rgba(0, 0, 0, 0.08));
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--neutral-on-background-weak);
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+  width: fit-content;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    background: var(--neutral-alpha-medium, rgba(0, 0, 0, 0.07));
+  }
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+    animation: beaconPulse 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+:global([data-theme="dark"]) .availabilityPill {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .availabilityPill::before {
+    animation: none;
+  }
+  .avatarWrap {
+    transition: none;
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+.monoMeta {
+  font-family: var(--font-code), monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--neutral-on-background-weak);
+  font-variant-numeric: tabular-nums;
+}
+
+// Table of contents: safely hidden on laptops, tablets & mobile to avoid overlaying content
+.tableOfContents {
+  position: fixed;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  z-index: 10;
+
+  @media (max-width: 1360px) {
+    display: none !important;
+  }
+}
+
+// Tablet & Laptop adjustments
+@media (max-width: breakpoints.$m) {
+  .avatarColumn {
+    position: relative !important;
+    top: auto !important;
+    width: 100% !important;
+    padding: 0 0 24px 0 !important;
+    align-items: center !important;
+    text-align: center;
+  }
+}
+
+// Mobile phone adjustments
+@media (max-width: breakpoints.$s) {
+  .sectionContainer {
+    scroll-margin-top: 24px;
+    margin-bottom: 36px !important;
+  }
+
+  .sectionHeader {
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+  }
+
+  .avatarColumn {
+    padding: 0 0 20px 0 !important;
+    gap: 12px !important;
+  }
+
+  .textAlign {
+    text-align: center;
+    font-size: clamp(1.85rem, 7.5vw, 2.6rem) !important;
+    line-height: 1.15 !important;
+  }
+
+  .blockAlign {
+    align-self: center;
+    width: 100% !important;
+  }
+
+  .availabilityPill {
+    margin-bottom: 12px;
+    font-size: 0.72rem;
+    padding: 3px 10px;
+  }
+
+  .experienceCard, .skillCard {
+    padding: 16px 14px;
+    border-radius: 12px;
+    gap: 10px;
+  }
+
+  .experienceHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .experienceTitleGroup {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .roleBadge {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .timeframeBadge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    align-self: flex-start;
+  }
+
+  .achievementsList {
+    padding-left: 14px;
+    gap: 6px;
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .skillsGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}

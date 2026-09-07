@@ -1,0 +1,177 @@
+@use "./breakpoints.scss" as breakpoints;
+
+// Outer Card Container with Staggered Entrance and Hover Physics
+.projectCardContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: cardFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(var(--card-index, 0) * 0.1s);
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes cardFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projectCardContainer {
+    animation: none;
+    transition: none;
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+.titleLink {
+  text-decoration: none;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  max-width: 100%;
+  cursor: pointer;
+  transition: color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    color: var(--neutral-on-background-strong);
+    transform: translateX(3px);
+
+    .arrowIcon {
+      opacity: 1;
+      transform: translate(2px, -2px);
+    }
+  }
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.techPill {
+  font-family: var(--font-code), monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: var(--neutral-alpha-weak, rgba(0, 0, 0, 0.04));
+  border: 1px solid var(--neutral-alpha-medium, rgba(0, 0, 0, 0.08));
+  color: var(--neutral-on-background-weak);
+  transition: all 0.2s ease;
+  user-select: none;
+
+  &:hover {
+    background: var(--neutral-alpha-medium, rgba(0, 0, 0, 0.08));
+    color: var(--neutral-on-background-strong);
+    border-color: var(--neutral-alpha-strong, rgba(0, 0, 0, 0.2));
+  }
+}
+
+:global([data-theme="dark"]) .techPill {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.65);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+  }
+}
+
+.arrowIcon {
+  opacity: 0;
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  color: var(--neutral-on-background-strong);
+}
+
+.projectActions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.actionButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: var(--neutral-alpha-weak, rgba(0, 0, 0, 0.04));
+  border: 1px solid var(--neutral-alpha-medium, rgba(0, 0, 0, 0.08));
+  color: var(--neutral-on-background-strong) !important;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--neutral-alpha-medium, rgba(0, 0, 0, 0.08));
+    border-color: var(--neutral-on-background-strong);
+    color: var(--neutral-on-background-strong) !important;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+:global([data-theme="dark"]) .actionButton {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9) !important;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff !important;
+  }
+}
+
+@media (max-width: breakpoints.$s) {
+  .titleLink {
+    width: 100%;
+
+    .arrowIcon {
+      opacity: 0.8;
+    }
+  }
+
+  .projectActions {
+    gap: 10px;
+    width: 100%;
+  }
+
+  .actionButton {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    flex: 1;
+    justify-content: center;
+    min-height: 38px;
+  }
+}

@@ -1,0 +1,51 @@
+@use "./breakpoints.scss" as breakpoints;
+
+.mask {
+    pointer-events: none;
+    backdrop-filter: blur(0.5rem);
+    background: linear-gradient(to bottom, var(--page-background), var(--static-transparent));
+    mask-image: linear-gradient(rgba(0,0,0) 25%, rgba(0, 0, 0, 0) 100%);
+    mask-size: 100% 100%;
+}
+
+.navDock {
+    pointer-events: auto;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--neutral-alpha-weak);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:global([data-theme="dark"]) .navDock {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: breakpoints.$s) {
+    .position {
+        top: auto;
+        bottom: max(16px, calc(10px + env(safe-area-inset-bottom, 0px)));
+        left: 0;
+        right: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding-left: 16px;
+        padding-right: 16px;
+        box-sizing: border-box;
+    }
+
+    .navDock {
+        padding: 4px 8px;
+        gap: 3px;
+        border-radius: 9999px !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+        max-width: calc(100vw - 32px);
+    }
+
+    .mask {
+        transform: rotate(180deg);
+        bottom: 0;
+    }
+}

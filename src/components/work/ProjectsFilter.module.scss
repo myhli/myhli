@@ -1,0 +1,107 @@
+@use "../breakpoints.scss" as breakpoints;
+
+.filterContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.categoryBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 4px;
+  margin-bottom: 8px;
+}
+
+.categoryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  background: var(--neutral-alpha-weak, rgba(0, 0, 0, 0.04));
+  border: 1px solid var(--neutral-alpha-medium, rgba(0, 0, 0, 0.08));
+  color: var(--neutral-on-background-weak);
+  cursor: pointer;
+  outline: none;
+  touch-action: manipulation;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+
+  &:hover {
+    background: var(--neutral-alpha-medium, rgba(0, 0, 0, 0.08));
+    color: var(--neutral-on-background-strong);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+:global([data-theme="dark"]) .categoryBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.65);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.09);
+    color: #ffffff;
+  }
+}
+
+.activeBtn {
+  background: var(--neutral-on-background-strong) !important;
+  color: var(--neutral-background-strong, #0a0c10) !important;
+  border-color: transparent !important;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+
+  &:hover {
+    background: var(--neutral-on-background-strong) !important;
+    color: var(--neutral-background-strong, #0a0c10) !important;
+  }
+}
+
+:global([data-theme="dark"]) .activeBtn {
+  background: #ffffff !important;
+  color: #0c0e14 !important;
+  box-shadow: 0 4px 18px rgba(255, 255, 255, 0.15);
+}
+
+.categoryCount {
+  font-family: var(--font-code), monospace;
+  font-size: 0.7rem;
+  opacity: 0.75;
+  font-variant-numeric: tabular-nums;
+}
+
+.projectsList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+@media (max-width: breakpoints.$s) {
+  .categoryBar {
+    gap: 6px;
+    padding: 0;
+  }
+
+  .categoryBtn {
+    padding: 5px 12px;
+    font-size: 0.75rem;
+  }
+
+  .projectsList {
+    gap: 36px;
+  }
+}
