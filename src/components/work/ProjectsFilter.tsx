@@ -86,7 +86,6 @@ export const ProjectsFilter: React.FC<ProjectsFilterProps> = ({ projects }) => {
             content={post.content}
             tags={post.metadata.tags}
             category={post.metadata.category}
-            avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
             link={post.metadata.link || ""}
           />
         ))}
