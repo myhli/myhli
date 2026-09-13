@@ -1,8 +1,5 @@
 # Hi, I'm Irham Mada Izzatila 👋
 
-Student at SMK Raden Umar Said (Kudus, ID)
-Focusing on Web & Mobile Development, Game Programming (Ren'Py), and UI/UX Design.
-
 - 🌐 **Portfolio:** [myhli.vercel.app](https://myhli.vercel.app)
 
 ---
