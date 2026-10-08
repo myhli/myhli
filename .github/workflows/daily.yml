@@ -12,9 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          date >> heartbeat.txt
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add heartbeat.txt
-          git commit -m "chore: daily heartbeat"
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+          COUNT=$((RANDOM % 6 + 2))
+          for i in $(seq 1 $COUNT); do
+            echo "$(date -u --iso-8601=seconds) - commit $i of $COUNT" >> heartbeat.txt
+            git add heartbeat.txt
+            git commit -m "chore: heartbeat ($i/$COUNT)"
+          done
           git push
