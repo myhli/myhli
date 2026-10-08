@@ -1,7 +1,5 @@
 # Hi, I'm Irham Mada Izzatila 👋
 
-- 🌐 **Portfolio:** [myhli.vercel.app](https://myhli.vercel.app)
-
 ---
 
 ### Tech Stack
